@@ -111,20 +111,16 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btnInit))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblLexema)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnAvanzar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfPreanalisis)
-                                .addComponent(tfLexema))
-                            .addComponent(lblPreanalisis))))
-                .addGap(23, 23, 23))
+                    .addComponent(lblLexema)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnAvanzar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfPreanalisis)
+                        .addComponent(tfLexema))
+                    .addComponent(lblPreanalisis)
+                    .addComponent(btnInit))
+                .addGap(39, 39, 39))
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(btnOpen)
@@ -162,9 +158,8 @@ public class Interfaz extends javax.swing.JFrame {
         analex.init();
         analex.resaltar();
         
-        tfPreanalisis.setText(""+analex.Preanalisis());
-        tfLexema.setText(analex.lexema());
-            
+        tfPreanalisis.setText("" + analex.Preanalisis());
+        tfLexema.setText(analex.lexema()); 
     }//GEN-LAST:event_btnInitClick
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed

@@ -1,1 +1,15 @@
+# Compilados
 build/
+dist/
+
+# NetBeans privado
+nbproject/private/
+
+# Logs
+*.log
+
+# Java
+*.class
+
+# Archivos temporales
+*.tmp
