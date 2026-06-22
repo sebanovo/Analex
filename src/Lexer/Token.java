@@ -98,10 +98,4 @@ public class Token {
     };
 
     private static final String DESCONOCIDO = "??";
-
-    public static final Map<String, Integer> keywords = new HashMap<String, Integer>() {
-        {
-            put("main", MAIN);
-        }
-    };
 }

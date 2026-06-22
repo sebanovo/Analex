@@ -1,5 +1,7 @@
 package Lexer;
 
+import java.util.HashMap;
+
 public class Analex {
     private Cinta M;
     private Token R;
@@ -7,9 +9,23 @@ public class Analex {
     private int pos; // Posición de inicio del lexema del preanalisis(), calculado en el dt().
                      // Use Cinta.getPos() o sea pos=M.getPos();
 
+    private HashMap<String, Integer> TPC;
+    private TSVAR TS;
+
+    public TSVAR getTS() {
+        return TS;
+    }
+
     public Analex(Cinta c) {
         M = c;
         R = new Token();
+
+        TPC = new HashMap<>();
+        TPC.put("div", Token.DIV);
+        TPC.put("mod", Token.MOD);
+
+        TS = new TSVAR();
+
         init();
     }
 
@@ -215,7 +231,16 @@ public class Analex {
                     }
                     break;
                 case 22:
-                    R.set(Token.ID, 0); // pts = posicion en la tsVar
+                    // R.set(Token.ID, 0); // pts = posicion en la tsVar
+                    // return;
+                    String lexemaLower = ac.toLowerCase();
+
+                    if (TPC.containsKey(lexemaLower)) {
+                        R.set(TPC.get(lexemaLower), 0);
+                    } else {
+                        int posTS = TS.add(ac);
+                        R.set(Token.ID, posTS);
+                    }
                     return;
                 default:
                     continue;
