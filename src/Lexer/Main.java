@@ -3,10 +3,25 @@ package Lexer;
 public class Main {
 
     public static void main(String[] args) {
-
         // ejecutar("x1 -> 15");
         // ejecutar("base -> 60.45");
         // // ejecutar("x1 + base");
+        // ejemploVariables();
+        token();
+    }
+
+    private static void token() {
+        Token R = new Token();
+        R.set(Token.NUMR, (float) 12.0);
+        System.out.println(R.getAtr());
+        System.out.println(R.toString());
+
+        R.set(Token.NUM, 40);
+        System.out.println(R.getAtr());
+        System.out.println(R.toString());
+    }
+
+    public static void ejemploVariables() {
         Cinta cinta = new Cinta("60.45 -> Base");
         Analex analex = new Analex(cinta);
         Parser parser = new Parser(analex);

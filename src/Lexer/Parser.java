@@ -8,8 +8,8 @@ import Lexer.Analex;
 import Lexer.Token;
 
 /**
- *
- * @author HP
+ * 
+ * @author Sebastian Cespedes Rodas
  */
 public class Parser {
     private Analex analex;

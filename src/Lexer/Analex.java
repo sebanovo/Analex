@@ -231,8 +231,6 @@ public class Analex {
                     }
                     break;
                 case 22:
-                    // R.set(Token.ID, 0); // pts = posicion en la tsVar
-                    // return;
                     String lexemaLower = ac.toLowerCase();
 
                     if (TPC.containsKey(lexemaLower)) {
@@ -253,10 +251,9 @@ public class Analex {
     }
 
     public void comunicate(int pos, String lexema) { // Overridable. Para la Interfaz.
-
     }
 
-    // ------------------------------------------------------------------------------
+    // validadores
     private boolean espacio(char cc) {
         final int SPACE = 32, TAB = 9;
         return (cc == Cinta.EOLN || cc == SPACE || cc == TAB);
@@ -284,12 +281,10 @@ public class Analex {
     }
 
     private boolean letraSinI(char cc) {
-
         return letra(cc) && cc != 'i' && cc != 'I';
     }
 
     private boolean letraSinV(char cc) {
         return letra(cc) && cc != 'v' && cc != 'V';
-
     }
 }
