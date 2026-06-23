@@ -4,9 +4,6 @@
  */
 package Lexer;
 
-import Lexer.Analex;
-import Lexer.Token;
-
 /**
  * 
  * @author Sebastian Cespedes Rodas

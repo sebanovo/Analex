@@ -73,22 +73,18 @@ public class Analex {
                         estado = 5;
                     } else if (cc == '%') {
                         estado = 6;
-                    } else if (cc == 'm' || cc == 'M') {
-                        estado = 7;
                     } else if (cc == '+') {
-                        estado = 9;
+                        estado = 7;
                     } else if (cc == '-') {
-                        estado = 10;
+                        estado = 8;
                     } else if (cc == '/') {
-                        estado = 13;
-                    } else if (cc == 'd' || cc == 'D') {
-                        estado = 14;
+                        estado = 10;
                     } else if (digito(cc)) {
-                        estado = 16;
+                        estado = 11;
                     } else if (cc == '.') {
-                        estado = 19;
-                    } else if (letraSinMD(cc)) {
-                        estado = 21;
+                        estado = 13;
+                    } else if (letra(cc)) {
+                        estado = 14;
                     } else {
                         estado = 2;
                     }
@@ -112,125 +108,70 @@ public class Analex {
                     R.set(Token.MOD, 0);
                     return;
                 case 7:
-                    if (cc == 'o' || cc == 'O') {
-                        estado = 8;
-                        M.avanzar();
-                        ac += cc;
-                    } else if (letraSinO(cc)) {
-                        estado = 21;
-                        M.avanzar();
-                        ac += cc;
-                    } else {
-                        estado = 22;
-                    }
-                    break;
+                    R.set(Token.MAS, 0);
+                    return;
                 case 8:
-                    if (cc == 'd' || cc == 'D') {
-                        estado = 6;
-                        M.avanzar();
-                        ac += cc;
-                    } else if (letraSinD(cc)) {
-                        estado = 21;
+                    if (cc == '>') {
+                        estado = 9;
                         M.avanzar();
                         ac += cc;
                     } else {
-                        estado = 22;
+                        estado = 18;
                     }
                     break;
                 case 9:
-                    R.set(Token.MAS, 0);
+                    R.set(Token.ASSIGN, 0);
                     return;
                 case 10:
-                    if (cc == '>') {
+                    R.set(Token.DIV, 0);
+                    return;
+                case 11:
+                    if (digito(cc)) {
+                        estado = 11;
+                        M.avanzar();
+                        ac += cc;
+                    } else if (cc == '.') {
                         estado = 12;
                         M.avanzar();
                         ac += cc;
                     } else {
-                        estado = 11;
-                    }
-                    break;
-                case 11:
-                    R.set(Token.MENOS, 0);
-                    return;
-                case 12:
-                    R.set(Token.ASSIGN, 0);
-                    return;
-                case 13:
-                    R.set(Token.DIV, 0);
-                    return;
-                case 14:
-                    if (cc == 'i' || cc == 'I') {
                         estado = 15;
-                        M.avanzar();
-                        ac += cc;
-                    } else if (letraSinI(cc)) {
-                        estado = 21;
-                        M.avanzar();
-                        ac += cc;
-                    } else {
-                        estado = 22;
                     }
                     break;
-                case 15:
-                    if (cc == 'v' || cc == 'V') {
-                        estado = 13;
-                        M.avanzar();
-                        ac += cc;
-                    } else if (letraSinV(cc)) {
-                        estado = 21;
-                        M.avanzar();
-                        ac += cc;
-                    } else {
-                        estado = 22;
-                    }
-                    break;
-                case 16:
+                case 12:
                     if (digito(cc)) {
+                        estado = 12;
+                        M.avanzar();
+                        ac += cc;
+                    } else {
                         estado = 16;
-                        M.avanzar();
-                        ac += cc;
-                    } else if (cc == '.') {
-                        estado = 18;
-                        M.avanzar();
-                        ac += cc;
-                    } else {
-                        estado = 17;
                     }
                     break;
-                case 17:
-                    R.set(Token.NUM, Integer.parseInt(ac));
-                    return;
-                case 18:
+                case 13:
                     if (digito(cc)) {
-                        estado = 18;
-                        M.avanzar();
-                        ac += cc;
-                    } else {
-                        estado = 20;
-                    }
-                    break;
-                case 19:
-                    if (digito(cc)) {
-                        estado = 18;
+                        estado = 12;
                         M.avanzar();
                         ac += cc;
                     } else {
                         estado = 2; // error
                     }
                     break;
-                case 20:
-                    R.set(Token.NUMR, Float.parseFloat(ac));
-                    return;
-                case 21:
+                case 14:
                     if (letra(cc) || digito(cc)) {
-                        estado = 21;
+                        estado = 14;
                         M.avanzar();
                         ac += cc;
                     } else {
-                        estado = 22;
+                        estado = 17;
                     }
                     break;
-                case 22:
+                case 15:
+                    R.set(Token.NUM, Integer.parseInt(ac));
+                    return;
+                case 16:
+                    R.set(Token.NUMR, Float.parseFloat(ac));
+                    return;
+                case 17:
                     String lexemaLower = ac.toLowerCase();
 
                     if (TPC.containsKey(lexemaLower)) {
@@ -239,6 +180,9 @@ public class Analex {
                         int posTS = TS.add(ac);
                         R.set(Token.ID, posTS);
                     }
+                    return;
+                case 18:
+                    R.set(Token.MENOS, 0);
                     return;
                 default:
                     continue;
@@ -266,25 +210,5 @@ public class Analex {
     private boolean letra(char cc) {
         cc = Character.toUpperCase(cc); // Convertir a mayúsculas, porque es NO case-sensitive.
         return ('A' <= cc && cc <= 'Z');
-    }
-
-    private boolean letraSinMD(char cc) {
-        return letra(cc) && cc != 'm' && cc != 'M' && cc != 'd' && cc != 'D';
-    }
-
-    private boolean letraSinO(char cc) {
-        return letra(cc) && cc != 'o' && cc != 'O';
-    }
-
-    private boolean letraSinD(char cc) {
-        return letra(cc) && cc != 'd' && cc != 'D';
-    }
-
-    private boolean letraSinI(char cc) {
-        return letra(cc) && cc != 'i' && cc != 'I';
-    }
-
-    private boolean letraSinV(char cc) {
-        return letra(cc) && cc != 'v' && cc != 'V';
     }
 }

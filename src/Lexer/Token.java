@@ -1,8 +1,5 @@
 package Lexer;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Esta clase representa el TOKEN y su valor <TOKEN, valor>
  * 
@@ -98,8 +95,8 @@ public class Token {
 
     private static final String NOMtokenSTR[] = {
             "FIN", "ERROR", "PA", "PC", "POR",
-        "MOD", "MAS", "MENOS", "DIV", "ASSIGN",
-        "NUM", "NUMR", "ID", "MAIN"
+            "MOD", "MAS", "MENOS", "DIV", "ASSIGN",
+            "NUM", "NUMR", "ID", "MAIN"
     };
 
     private static final String DESCONOCIDO = "??";

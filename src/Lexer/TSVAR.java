@@ -67,4 +67,54 @@ public class TSVAR {
          */
         valores.set(pTS, valor);
     }
+
+    public String toHtmlTable() {
+        StringBuilder html = new StringBuilder();
+        html.append("<html><div style='font-family:monospace;'>");
+        html.append("<b>TSVAR</b><br>");
+
+        if (nombres.isEmpty()) {
+            html.append("<i>vac&iacute;a</i>");
+            html.append("</div></html>");
+            return html.toString();
+        }
+
+        html.append("<table border='1' cellspacing='0' cellpadding='3'>");
+        html.append("<tr><th>#</th><th>Nombre</th><th>Valor</th></tr>");
+
+        for (int i = 0; i < nombres.size(); i++) {
+            html.append("<tr>");
+            html.append("<td>").append(i).append("</td>");
+            html.append("<td>").append(escapeHtml(nombres.get(i))).append("</td>");
+            html.append("<td>").append(formatValor(valores.get(i))).append("</td>");
+            html.append("</tr>");
+        }
+
+        html.append("</table>");
+        html.append("</div></html>");
+        return html.toString();
+    }
+
+    private String formatValor(Float valor) {
+        if (valor == null) {
+            return "";
+        }
+
+        if (valor == Math.rint(valor)) {
+            return String.valueOf(valor.intValue());
+        }
+
+        return String.valueOf(valor);
+    }
+
+    private String escapeHtml(String texto) {
+        if (texto == null) {
+            return "";
+        }
+
+        return texto.replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace("\"", "&quot;");
+    }
 }

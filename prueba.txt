@@ -1,0 +1,4 @@
+60.45 -> Base
+15 -> x1
+(Base - (200 mod 12) * -10.84)/x1 -> resultado
+resultado
