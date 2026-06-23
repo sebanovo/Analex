@@ -1,4 +1,13 @@
 # Analex1-2026
+<p align="center">
+  <img width="749" alt="image"
+       src="https://github.com/user-attachments/assets/f2a0466d-9a73-4f73-bc8d-93dd22e2d644" />
+</p>
+
+<p align="center">
+  <img width="500" alt="dt"
+       src="https://github.com/user-attachments/assets/99882b0a-1867-4b3a-8b72-adf6cb307646" />
+</p>
 
 Calculadora de expresiones aritméticas implementada con un analizador léxico (`Analex`) basado en un autómata determinista y un parser descendente.
 
